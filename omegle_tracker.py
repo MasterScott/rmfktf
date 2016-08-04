@@ -27,7 +27,7 @@ def init():
 	# DEFAULT OPTIONS MODULE
 	init.options = {
 		# NAME       VALUE               RQ     DESCRIPTION
-		'interface' :["wlan1"           ,True ,'Monitor Interface']
+		'interface' :[INTERFACE_ETHERNET,True ,'Monitor Interface']
 	}
 	
 	init.aux = """
