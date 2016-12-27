@@ -3,11 +3,10 @@
 
 # :-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-: #
 # Katana Core import                  #
-from core.KATANAFRAMEWORK import *    #
+from core.KatanaFramework import *    #
 # :-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-:-: #
 
 # LIBRARIES 
-from core.Function import get_interfaces,checkDevice,get_monitors_mode
 from scapy.all import *
 import urllib2,json
 # END LIBRARIES 
@@ -19,7 +18,7 @@ def init():
 	init.Description        ="Omegle.com User tracker"
 	init.CodeName           ="web/omg.track"
 	init.DateCreation       ="03/08/2016"      
-	init.LastModification   ="03/08/2016"
+	init.LastModification   ="27/12/2016"
 	init.References         =None
 	init.License            =KTF_LINCENSE
 	init.var                ={}
@@ -30,16 +29,14 @@ def init():
 		'interface' :[INTERFACE_ETHERNET,True ,'Monitor Interface']
 	}
 	
-	init.aux = """
- Devices Founds: """+str(get_interfaces())+"""
-"""
+	init.aux = "\n Devices Founds: "+str(NET.GetInterfacesOnSystem())+"\n"
 	return init
 # END INFORMATION MODULE
 IPList=[]
 # CODE MODULE    ############################################################################################
 def main(run):
 	
-	if checkDevice(init.var['interface']):
+	if NET.CheckIfExistInterface(init.var['interface']):
 		while True:sniff(filter="udp", prn=callback, store=0, iface=init.var['interface'])
 
 # END CODE MODULE ############################################################################################
